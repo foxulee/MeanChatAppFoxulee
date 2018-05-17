@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://localhost:3000",
+    "target": "https://mean-stack-chat-app.herokuapp.com/",
     "secure": false,
     "key": "./ssl/server.key",
     "cert": "./ssl/server.crt",
