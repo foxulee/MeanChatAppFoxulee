@@ -1,0 +1,58 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-6">
+      <h1>
+        <a class="btn btn-social btn-facebook btn-lg" href="/api/facebook">
+          <i class="fa fa-facebook"></i> Sign Up With Facebook
+        </a>
+      </h1>
+      <h1>
+        <a class="btn btn-social btn-gplus btn-lg" href="/api/google">
+          <i class="fa fa-google-plus"></i> Sign Up With Google
+        </a>
+      </h1>
+      <h1>Register</h1>
+      <p class="lead">Already a member? Please
+        <a routerLink="/login">log in</a> instead.</p>
+      <form (submit)="register()" #form="ngForm">
+        <div class="form-group" [ngClass]="{'has-error': credentials.name==''}">
+          <label for="name">Full name</label>
+          <input type="text" class="form-control" name="name" placeholder="Enter your name" [(ngModel)]="credentials.name" required
+            #name="ngModel">
+          <div *ngIf="name.invalid && (name.dirty || name.touched)">
+            <div *ngIf="name?.errors.required" class="text-danger">
+              Full Name is required. 
+            </div>
+          </div>
+        </div>
+        <div class="form-group" [ngClass]="{'has-error': credentials.email==''}">
+          <label for="email">Email address</label>
+          <input type="email" class="form-control" name="email" placeholder="Enter email" [(ngModel)]="credentials.email" required
+            #email="ngModel" (blur)="isEmailUnique($event)">
+          <div *ngIf="email.invalid && (name.dirty || name.touched)">
+            <div *ngIf="email?.errors.required" class="text-danger">
+              Email is required.
+            </div>
+          </div>
+          <div *ngIf="emailUnique | async as checkEmail" class="text-danger">
+            {{checkEmail.message}}
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error': credentials.password==''}">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="credentials.password" required
+            #password="ngModel">
+          <div *ngIf="password.invalid && (name.dirty || name.touched)">
+            <div *ngIf="password?.errors.required" class="text-danger">
+              Password is required.
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-default" [disabled]="!form.form.valid">Register!</button>
+      </form>
+    </div>
+  </div>
+
+</div>

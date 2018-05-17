@@ -1,0 +1,10 @@
+{
+  "/api": {
+    "target": "https://localhost:3000",
+    "secure": false,
+    "key": "./ssl/server.key",
+    "cert": "./ssl/server.crt",
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

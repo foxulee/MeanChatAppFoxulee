@@ -1,0 +1,95 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  font-size: 16px;
+  line-height: 1.42857143;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  color: #555;
+  background: #eeeeee;
+}
+
+.btn-facebook {
+  background: #4aa1f3;
+  border-radius: 0;
+  color: white;
+}
+
+.btn-facebook:link,
+.btn-facebook:visited {
+  color: white;
+  text-decoration: none;
+  background: #4aa1f3;
+}
+
+btn.btn-facebook:active,
+.btn-facebook:hover {
+  background: #4aa1f3;
+  color: white;
+}
+
+.btn-gplus {
+  background: #e44b34;
+  border-radius: 0;
+  color: white;
+}
+
+.btn-gplus:link,
+.btn-gplus:visited {
+  color: white;
+  text-decoration: none;
+  background: #e44b34;
+}
+
+btn.btn-gplus:active,
+.btn-gplus:hover {
+  background: #e44b34;
+  color: white;
+}
+
+.add-apply {
+  background-color: #4aa1f3;
+  width: 100%;
+  text-shadow: none;
+  color: #ffffff !important;
+  margin-top: 25px;
+  font-weight: bold;
+}
+
+.add-fav {
+  background-color: #4aa1f3;
+  width: 100%;
+  text-shadow: none;
+  color: #ffffff !important;
+  font-weight: bold;
+  padding: 5px 2px 5px 2px
+}
+
+
+.new-search-bar {
+  padding-left: 20px;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  height: 52px;
+  font-size: 17px;
+  border: 1px;
+}
+
+.input-btn {
+  background: #4aa1f3;
+  border-top-right-radius: 25px !important;
+  border-bottom-right-radius: 25px !important;
+  padding-left: 23px;
+  padding-right: 23px;
+  border: none;
+  height: 52px;
+  font-size: 15px;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: 0.3px;
+  text-shadow:none;
+  color:white !important;
+}
+
+.search-style {
+  width: 50%;
+  margin: 0 auto;
+}

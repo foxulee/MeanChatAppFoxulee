@@ -1,0 +1,29 @@
+<div class="container-fluid">
+  <div class="col-md-12">
+    <div class="col-md-12">
+      <h1 class="news-mainhead">Latest News</h1>
+    </div>
+    <div class="col-md-12 col-sm-12 news-bottom" *ngFor="let news of newsList">
+      <div class="col-md-12 news-post">
+        <div class="row">
+          <a [href]="news.webUrl" target="_blank" style="color: #4aa1f3; text-decoration: none;">
+            <div class="col-md-3">
+              <img [src]="news.fields.thumbnail" class="img-responsive">
+            </div>
+            <div class="col-md-9">
+              <h5 class="news-date">{{news.webPublicationDate | date: 'dd/MM/yyyy'}}</h5>
+              <h4>{{news.webTitle}}</h4>
+              <p [innerHTML]="news.fields.standfirst" class="news-text"></p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <button (click)="loadMore()" class="loadMore btn btn-block">Load More</button>
+      <p>
+        <a (click)="scrollToTop()" class="top">Back to top</a>
+      </p>
+    </div>
+  </div>
+</div>

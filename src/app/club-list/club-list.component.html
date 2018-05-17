@@ -1,0 +1,12 @@
+<!-- <div *ngFor="let club of clubs; let index = index">
+  <club-card [club] = "club"></club-card>
+</div> -->
+
+
+  <div class="row">
+    <div *ngFor="let club of clubs; let index = index" style="border: blue, 1px, solid">
+      <div class="col-md-9 col-lg-4">
+        <club-card [club]="club"></club-card> <br>
+      </div>
+    </div>
+  </div>

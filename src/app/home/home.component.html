@@ -1,0 +1,50 @@
+<div class="container-fluid">
+  <div class="col-md-12">
+    <form action="#" method="post">
+      <div class="form-group ad-30" style="margin-top:8px;">
+        <div class="input-group search-style">
+          <input class="form-control new-search-bar" name="country" id="search" placeholder="Enter Your Club Name" type="text" #search>
+          <span class="input-group-btn">
+            <button class="btn input-btn" type="" id="search-form" (click)="onSearchClick(search.value)">Search</button>
+          </span>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="col-md-12">
+    <div class="">
+      <div class="row">
+
+        <div class="col-md-3">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="filter-container">
+                <div class="card">
+                  <form action="#" method="post">
+                    <div class="content">
+                      <p class="filter">
+                        FILTER
+                      </p>
+                      <hr/>
+                      <select class="form-control" name="country" id="country" (change)="onClubNameChange(club.value)" #club>
+                        <option value="">Filter By Country</option>
+                        <option *ngFor="let country of countries" value="{{country}}">{{country}}</option>                        
+                      </select>
+                      <div class="clearfix"></div>
+                      <button class="btn add-apply">Apply</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-9">
+            <club-list [clubs] = "filteredClubs"></club-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

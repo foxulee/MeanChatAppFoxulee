@@ -1,0 +1,192 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+        aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" routerLink="/">MEAN Stack Chat App</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right" id="reload">
+        <li *ngIf="auth.isLoggedIn()">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="glyphicon fa fa-bell nav-glyphicon"></span>
+            <b class="caret"></b>
+            <span class="label label-primary nav-label-icon" *ngIf="totalFriendRequests > 0">{{totalFriendRequests}}</span>
+          </a>
+
+          <ul class="dropdown-menu">
+            <li>
+              <div class="navbar-login" id="requestBar">
+                <div class="col-md-12">
+                  <div class="row">
+                    <div class="dropdown-tag">
+                      <h3 class="text-center dropdown-tag-head">
+                        Friend Requests
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <ng-container *ngIf="totalFriendRequests > 0; else noRequest">
+                    <div class="row" *ngFor="let sender of requestSenders; let index=index">
+                      <div class="col-md-3">
+                        <p class="text-center">
+                          <!-- <img src="https://placehold.it/300x300" class="img-circle img-responsive dropdown-img" /> -->
+                          <ng-container *ngIf="sender.id.userImage.includes('http'); else noHttp">
+                            <img [src]="sender.id.userImage" class="img-circle img-responsive dropdown-img">
+                          </ng-container>
+                          <ng-template #noHttp>
+                            <img [src]="'https://s3.amazonaws.com/fox-user-pictures/' + sender.id.userImage" class="img-circle img-responsive dropdown-img">
+                          </ng-template>
+                        </p>
+                      </div>
+                      <div class="col-md-9 pleft-0">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="col-md-12">
+                              <p class="text-left">
+                                <strong id="">{{sender.name}}</strong>
+                              </p>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                  <button type="submit" name="accept" id="accept_friend" class="btn btn-default drop-accept accept" (click)="acceptFriendRequest(sender.id._id,sender.name)">
+                                    <i class="fa fa-check" aria-hidden="true"></i> Accept</button>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                  <button type="submit" name="cancel" class="btn drop-cancel remove" id="cancel_friend" (click)="cancelFriendRequest(sender.id._id,sender.name)">
+                                    <i class="fa fa-times" aria-hidden="true"></i> Cancel
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <hr />
+                  </ng-container>
+                  <ng-template #noRequest>
+                    <p class="text-center">No Friend Request</p>
+                  </ng-template>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+        </li>
+
+        <!-- /**
+        * *************************Unread messages************************************
+        */ -->
+        <li *ngIf="auth.isLoggedIn()">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="fa fa-globe "></span>
+            <b class="caret"></b>
+            <span class="label label-primary nav-label-icon" id="" *ngIf="unreadCount > 0">{{unreadCount}}</span>
+          </a>
+          <ul class="dropdown-menu dmenu">
+            <li>
+              <div class="navbar-login">
+                <div class="col-md-12">
+                  <div class="row">
+                    <div class="dropdown-tag">
+                      <h3 class="text-center dropdown-tag-head">
+                        Notifications
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <ng-container *ngFor="let newMessage of newMessages">
+                    <a (click)="readLastMessage(newMessage)" style="cursor: pointer;">
+                      <!-- <a [href]="'private-chat/' + unreadMsg.senderId +'.' + unreadMsg.receiverId + '?receiverName=' + unreadMsg.senderName" (click)="readLastMessage(unreadMsg._id)"> -->
+                      <!-- <a [routerLink]="['private-chat/', unreadMsg.senderId +'.' + unreadMsg.receiverId]" [queryParams]="{receiverName: unreadMsg.senderName}"> -->
+                      <div class="row">
+                        <div class="col-md-3">
+                          <p class="text-center">
+                            <!-- <img src="https://placehold.it/300x300" class="img-circle img-responsive dropdown-img" /> -->
+                            <ng-container *ngIf="newMessage.userImage.includes('http'); else noHttp">
+                              <img [src]="newMessage.userImage" class="img-circle img-responsive dropdown-img">
+                            </ng-container>
+                            <ng-template #noHttp>
+                              <img [src]="'https://s3.amazonaws.com/fox-user-pictures/' + newMessage.userImage" class="img-circle img-responsive dropdown-img">
+                            </ng-template>
+                          </p>
+                        </div>
+                        <div class="col-md-9 pleft-0">
+                          <div class="row">
+                            <div class="col-md-12 textRow">
+                              <div class="col-md-12" id="textRow">
+                                <p class="text-left drop-name">
+                                  <strong *ngIf="!newMessage.isRead;else readName">{{newMessage.senderName}}</strong>
+                                  <ng-template #readName>{{newMessage.senderName}}</ng-template>
+                                </p>
+                                <strong *ngIf="!newMessage.isRead;else readMsg">{{newMessage.message}}</strong>
+                                <ng-template #readMsg>{{newMessage.message}}</ng-template>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                    <hr class="dropdown-divider" />
+                  </ng-container>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+
+        </li>
+        <!-- /**
+        * *************************Unread messages END************************************
+        */ -->
+
+
+        <li *ngIf="auth.isLoggedIn()">
+          <a routerLink="/news">News</a>
+        </li>
+        <li *ngIf="auth.isLoggedIn()">
+          <a routerLink="/members">Members</a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{auth.getUserDetails()?.name}}
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li *ngIf="auth.isLoggedIn()">
+              <a routerLink="/setting/profile">{{ auth.getUserDetails()?.name }}'s profile</a>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li *ngIf="auth.isLoggedIn() && auth.isAdmin()">
+              <a routerLink="/dashboard">Dashboard</a>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li *ngIf="auth.isLoggedIn()">
+              <a (click)="auth.logout()">
+                <span class="fa fa-sign-out"></span>Logout</a>
+            </li>
+            <li *ngIf="!auth.isLoggedIn()">
+              <a routerLink="/login">
+                <span class="fa fa-sign-in"></span>Sign in</a>
+            </li>
+            <li *ngIf="!auth.isLoggedIn()">
+              <a routerLink="/register">
+                <span class="fa fa-registered"></span>Sign up</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

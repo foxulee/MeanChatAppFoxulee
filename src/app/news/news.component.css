@@ -1,0 +1,38 @@
+.news-mainhead {
+  color: #4aa1f3;
+  margin-bottom: 20px;
+  font-size: 32px;
+}
+
+.news-bottom {
+  margin-bottom: 10px;
+}
+
+.news-post {
+  background-color: white;
+  padding: 20px;
+  margin-top: 15px;
+}
+
+.news-date{
+    color: #333333 !important;
+}
+
+.news-text{
+    font-size: 18px;
+    color: #333333 !important;
+}
+
+.top{
+    text-decoration: none;
+    color: #4aa1f3;
+    cursor: pointer;
+}
+
+.loadMore{
+    padding: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #4aa1f3;
+    color: #fff;
+}

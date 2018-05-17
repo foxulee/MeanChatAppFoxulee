@@ -1,0 +1,131 @@
+<div class="col-md-12 mob-clearfix margin-80">
+
+  <div class="col-md-12">
+    <div class="chat_container">
+      <div class="row">
+        <!-- LEFT -->
+
+        <div class="col-sm-4 col-md-3">
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="profile-sidebar">
+                <div class="img-container">
+                  <img [src]="details?('https://s3.amazonaws.com/fox-user-pictures/' + details.userImage): ''" class="img-responsive img-user"
+                    id="show_img">
+                </div>
+
+                <div class="profile-usertitle">
+                  <div class="profile-usertitle-name">
+                    {{details?.fullName}}
+                  </div>
+                  <div class="profile-usertitle-job">
+                    @{{details?.name}}
+                  </div>
+                </div>
+
+                <div class="profile-usermenu">
+                  <ul class="nav">
+                    <li>
+                      <a [routerLink]="['/overview', auth.getUserDetails()._id]" style="color:#4aa1f3 !important">
+                        <i class="fa fa-home" style="color:#4aa1f3 !important"></i>
+                        Overview
+                      </a>
+                    </li>
+                    <li>
+                      <a routerLink="/setting/profile" style="color:#4aa1f3 !important">
+                        <i class="fa fa-user" style="color:#4aa1f3 !important"></i>
+                        Profile
+                      </a>
+                    </li>
+                    <li class="active">
+                      <a routerLink="/setting/interest" style="color:#4aa1f3 !important">
+                        <i class="fa fa-check" style="color:#4aa1f3 !important"></i>
+                        Interests
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+        <!--MIDDLE-->
+        <div class="col-sm-8 col-md-9 mob-50">
+          <div>
+            <div class="user-display">
+              <h3 class="user-display-head" style="color:#4aa1f3 !important">Favourite Clubs</h3>
+              <hr />
+              <p style="margin-bottom:30px;" *ngFor="let favClub of details?.favClubs">
+                <span class="glyphicon glyphicon-check" style="color:#4aa1f3"> {{favClub.clubName}}</span>
+              </p>
+
+              <div class="form-group ad-30" style="margin-top:18px;">
+                <div class="input-group">
+                  <input class="form-control add-items" name="favClub" type="text" style="" #favClub>
+
+                  <span class="input-group-btn">
+                    <button class="btn btn-default add-items-btn" style="font-weight:bold; background-color:#4aa1f3; color: white" (click)="onSubmit(favClub.value)"
+                      [disabled]="!favClub.value">Add Club</button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:20px;">
+            <div class="user-display">
+              <h3 class="user-display-head" style="color:#4aa1f3 !important">Favourite Players</h3>
+              <hr />
+              <p style="margin-bottom:30px;" *ngFor="let favPlayer of details?.favPlayers">
+                <span class="glyphicon glyphicon-check" style="color:#4aa1f3"> {{favPlayer.playerName}}</span>
+              </p>
+
+              <div class="form-group ad-30" style="margin-top:18px;">
+                <div class="input-group">
+                  <input class="form-control add-items" name="favPlayer" type="text" style="" #favPlayer>
+
+                  <span class="input-group-btn">
+                    <button class="btn btn-default add-items-btn" style="font-weight:bold; background-color:#4aa1f3; color: white" (click)="onSubmit(null, favPlayer.value)"
+                      [disabled]="!favPlayer.value">Add Player</button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:20px;">
+            <div class="user-display">
+              <h3 class="user-display-head" style="color:#4aa1f3 !important">Favourite National Team</h3>
+              <hr />
+              <p style="margin-bottom:30px;" *ngFor="let favTeam of details?.favNationalTeams">
+                <span class="glyphicon glyphicon-check" style="color:#4aa1f3"> {{favTeam.teamName}}</span>
+              </p>
+
+              <div class="form-group ad-30" style="margin-top:18px;">
+                <div class="input-group">
+                  <input class="form-control add-items" name="favTeam" type="text" style="" #favTeam>
+
+                  <span class="input-group-btn">
+                    <button class="btn btn-default add-items-btn" style="font-weight:bold; background-color:#4aa1f3; color: white" (click)="onSubmit(null, null, favTeam.value)"
+                      [disabled]="!favTeam.value">Add Team</button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

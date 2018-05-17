@@ -1,0 +1,156 @@
+<div class="col-md-12 mob-clearfix margin-80">
+
+  <div class="col-md-12">
+    <div class="chat_container">
+      <div class="row">
+
+        <div class="col-sm-4 col-md-3">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card-container">
+                <div class="card">
+                  <div class="front">
+                    <div class="cover">
+                    </div>
+                    <div class="user cover-img">
+                      <!-- <img class="img-circle" src="https://placehold.it/500x500" /> -->
+
+                      <ng-container *ngIf="senderImage.includes('http'); else noHttp">
+                        <img [src]="senderImage" class="img-circle">
+                      </ng-container>
+                      <ng-template #noHttp>
+                        <img [src]="'https://s3.amazonaws.com/fox-user-pictures/' + senderImage" class="img-circle">
+                      </ng-template>
+
+                    </div>
+                    <div class="content">
+                      <div class="main">
+                        <h3 class="name">
+                          {{user.name}}
+                        </h3>
+                        <p class="profession-online">
+                          <i class="fa fa-circle" [ngClass]="{'online': isOnline, 'offline':!isOnline}" aria-hidden="true"></i>
+                          <ng-container *ngIf="isOnline; else offline">Online</ng-container>
+                          <ng-template #offline>Offline</ng-template>
+                        </p>
+                        <p class="text-center">
+                          {{user.mantra}}
+                        </p>
+                      </div>
+                      <div class="footer">
+                        <i class="fa fa-mail-forward"></i>
+                        <a (click)="navigateToMyProfile()" style="color:#999999; text-decoration:none;font-weight:normal; font-size:16px; cursor: pointer"
+                          id="user-name">
+                          View Profile
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" style="margin-top:10px">
+            <div class="col-md-12">
+              <div class="card-container">
+                <div class="card">
+                  <div class="front">
+
+                    <div class="content main-scroll">
+                      <div class="main">
+                        <p class="friends" style="margin-bottom:0px;color:#444">
+                          Online Friends
+                          <span id="numOfFriends">({{onlineFriendsList.length}})</span>
+                        </p>
+                        <hr style="margin-top:10px" />
+
+                        <div class="onlineFriends">
+                          <div *ngFor="let onlineFriend of onlineFriendsList">
+                            <ng-container *ngIf="onlineFriend.img.includes('http'); else noHttp">
+                              <img [src]="onlineFriend.img" class="pull-left img-circle" style="width: 30px; margin-right: 10px;">
+                            </ng-container>
+                            <ng-template #noHttp>
+                              <img [src]="'https://s3.amazonaws.com/fox-user-pictures/' + onlineFriend.img" class="pull-left img-circle" style="width: 30px; margin-right: 10px;">
+                            </ng-template>
+                            <!-- <img [src]="'https://placehold.it/30*30'" class="pull-left img-circle" style="width: 50px; margin-right: 10px;"> -->
+                            <p>
+                              <a class="val" [routerLink]="['/private-chat', onlineFriend['id']+'.'+auth.getUserDetails()._id]" [queryParams]="{receiverName: onlineFriend['name']}">
+                                <h3 style="padding-top: 15px; font-size: 14px">@{{onlineFriend['name']}}
+                                  <i class="fa fa-circle pull-right" aria-hidden="true" [ngClass]="{'online': isOnline, 'offline':!isOnline}"></i>
+                                </h3>
+                              </a>
+                            </p>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!--chat_sidebar-->
+        <div class="col-sm-8 col-md-9 message_section assign-width">
+          <div class="row">
+            <div class="new_message_head">
+              <div class="pull-left">
+                <button>
+                  <i class="" aria-hidden="true"></i>
+                  @{{receiverName}}
+                </button>
+              </div>
+              <div class="pull-right">
+
+              </div>
+            </div>
+
+            <div class="chat_area" #messageDiv>
+              <ul id="messages" class="list-unstyled" >
+                <li class="left clearfix" *ngFor="let message of messages" #messageList>
+                  <span class="chat-img1 pull-left">
+                    <!-- <img src="https://placehold.it/300x300" class="img-circle" /> -->
+                    <ng-container *ngIf="message.from.image.includes('http'); else noHttp">
+                      <img [src]="message.from.image" class="img-circle">
+                    </ng-container>
+                    <ng-template #noHttp>
+                      <img [src]="'https://s3.amazonaws.com/fox-user-pictures/' + message.from.image" class="img-circle">
+                    </ng-template>
+                  </span>
+                  <div class="chat-body1 clearfix">
+                    <p>
+                      <span class="chat-name">{{message.from.name}}</span>
+                      <br /> {{message.content}}
+                    </p>
+                  </div>
+                </li>
+              </ul>
+              <!-- </ul> -->
+            </div>
+            <!--chat_area-->
+            <div class="message_write">
+              <textarea class="form-control" name="message" id="msg" placeholder="Type a message" [(ngModel)]="messageContent"></textarea>
+              <div class="clearfix"></div>
+              <div class="chat_bottom">
+                <button id="chatMessage" class="pull-right btn btn-primary" style="background: #4aa1f3; border: #4aa1f3;" (click)="sendMessage()"
+                  [disabled]="!messageContent">
+                  Send
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
