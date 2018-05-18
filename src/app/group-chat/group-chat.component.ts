@@ -117,8 +117,8 @@ export class GroupChatComponent implements OnInit, OnDestroy {
         this.messages.push(message);
       });
 
-    this.socketService.onEvent(SocketEvent.CONNECT)
-      .subscribe(() => {
+    // this.socketService.onEvent(SocketEvent.CONNECT)
+    //   .subscribe(() => {
         console.log('connected');
 
         // join group chat
@@ -128,7 +128,7 @@ export class GroupChatComponent implements OnInit, OnDestroy {
         // join friend request notification
         this.socketService.emit('joinRequest', { sender: this.user, receiver: this.receiverName });
 
-      });
+      // });
 
     this.socketService.onEvent(SocketEvent.JOIN).subscribe(() => {
       console.log('User has joined this channel');
