@@ -13,6 +13,7 @@ import { Observable } from 'rxjs/Observable';
 import { PrivateChatService } from '../private-chat.service';
 import { SocketService } from '../socket.service';
 import { FriendRequestService } from '../friend-request.service';
+import { ReloadNavbarService } from '../reload-navbar.service';
 
 @Component({
   selector: 'app-private-chat',
@@ -50,7 +51,8 @@ export class PrivateChatComponent implements OnInit, AfterViewInit {
     public auth: AuthenticationService,
     private http: HttpClient,
     private privateChatService: PrivateChatService,
-    private friendRequestService: FriendRequestService
+    private friendRequestService: FriendRequestService,
+    private reloadNavbarService: ReloadNavbarService
   ) {
     let details = this.auth.getUserDetails();
     this.user.name = details.name;
@@ -59,6 +61,7 @@ export class PrivateChatComponent implements OnInit, AfterViewInit {
     this.user.image = details.img;
     this.senderImage = details.img;
     this.socketService.connect();
+    this.reloadNavbarService.reloadNavbar();
   }
 
   ngOnInit() {

@@ -9,6 +9,7 @@ import { GroupChatService } from '../group-chat.service';
 import { UserDetails } from './../authentication.service';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import 'rxjs/add/operator/take';
+import { ReloadNavbarService } from '../reload-navbar.service';
 
 
 @Component({
@@ -51,7 +52,9 @@ export class GroupChatComponent implements OnInit, OnDestroy {
     public auth: AuthenticationService,
     private friendRequestService: FriendRequestService,
     private socketService: SocketService,
-    private router: Router) {
+    private router: Router,
+    private reloadNavbarService: ReloadNavbarService
+  ) {
   }
 
   ngOnInit() {
@@ -68,6 +71,8 @@ export class GroupChatComponent implements OnInit, OnDestroy {
     })
 
     this.initIoConnection();
+
+    this.reloadNavbarService.reloadNavbar();
 
     // friend list
     let group = 'GlobalGroup';

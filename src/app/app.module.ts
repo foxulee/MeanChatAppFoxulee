@@ -32,6 +32,7 @@ import { PrivateChatService } from './private-chat.service';
 import { AdminGuardService } from './admin-guard.service';
 import { NewsComponent } from './news/news.component';
 import { NewsService } from './news.service';
+import { ReloadNavbarService } from './reload-navbar.service';
 
 
 const routes: Routes = [
@@ -87,7 +88,8 @@ const routes: Routes = [
     NotificationService,
     FriendRequestService,
     PrivateChatService,
-    NewsService
+    NewsService,
+    ReloadNavbarService
   ],
   bootstrap: [AppComponent]
 })

@@ -10,6 +10,7 @@ import { Observable } from 'rxjs/Observable';
 import { Router, NavigationEnd } from '@angular/router';
 import { SocketEvent } from '../models/chat';
 import { PrivateChatService } from '../private-chat.service';
+import { ReloadNavbarService } from './../reload-navbar.service';
 
 @Component({
   selector: 'navbar',
@@ -34,11 +35,15 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private friendRequestService: FriendRequestService,
     private socketService: SocketService,
     private router: Router,
-    private privateChatService: PrivateChatService
+    private privateChatService: PrivateChatService,
+    private reloadNavbarService: ReloadNavbarService
   ) {
     this.userDetails = this.auth.getUserDetails();
     if (this.userDetails) {
       this.socketService.connect();
+      this.reloadNavbarService.getReloaded.subscribe(()=>{
+        this.ngOnInit();
+      });
       router.events.subscribe(event => {
         if (event instanceof NavigationEnd) {
           this.url = event.url;
@@ -53,7 +58,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
             this.socketService.emit('global group', { group, name, img, id });
           }
         }
-      })
+      });
+
     }
   }
 
@@ -140,7 +146,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.changeReadStatus(lastUnreadMsg._id).subscribe(() => {
 
       // force reload, then trigger the ngOnInit life hook again
-      window.location.href = 'private-chat/' + lastUnreadMsg.senderId + '.' + lastUnreadMsg.receiverId + '?receiverName=' + lastUnreadMsg.senderName;
+      window.location.href = '/#/private-chat/' + lastUnreadMsg.senderId + '.' + lastUnreadMsg.receiverId + '?receiverName=' + lastUnreadMsg.senderName;
     });
   }
 
