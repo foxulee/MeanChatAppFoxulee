@@ -176,7 +176,7 @@ export class GroupChatComponent implements OnInit, OnDestroy {
 
   navigateToOverview(receiverId: string) {
     // this.router.navigate(['/overview', receiverId]);
-    window.open('/overview/' + receiverId);
+    window.open('/#/overview/' + receiverId);
   }
 
   navigateToMyProfile() {
