@@ -74,7 +74,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload', useHash: true }),
+    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
   ],
   providers: [
     AuthenticationService,

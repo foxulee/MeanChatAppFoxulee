@@ -9,7 +9,7 @@ app.use(express.static(__dirname + '/dist', {
 
 // rewrite virtual urls to angular app to enable refreshing of internal pages
 router.get('*', function (req, res, next) {
-  res.sendFile(__dirname + '/dist/index')
+  res.sendFile(__dirname + '/dist/index.html')
 })
 
 
