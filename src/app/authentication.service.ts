@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Http, RequestOptions, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { SocketService } from './socket.service';
+import { BACKEND_URI } from './config/backend-uri';
 
 export interface UserDetails {
   _id: string;
@@ -81,9 +82,9 @@ export class AuthenticationService {
     let base;
 
     if (method === 'post') {
-      base = this.http.post(`/api/${type}`, user);
+      base = this.http.post(`${BACKEND_URI}/api/${type}`, user);
     } else {
-      base = this.http.get(`/api/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` } });
+      base = this.http.get(`${BACKEND_URI}/api/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` } });
     }
 
     const request = base.pipe(
@@ -111,11 +112,11 @@ export class AuthenticationService {
   }
 
   saveProfile(userProfile: any): Observable<any> {
-    return this.http.post('/api/saveProfile', userProfile);
+    return this.http.post(BACKEND_URI + '/api/saveProfile', userProfile);
   }
 
   addInterest(interests: any) {
-    return this.http.post('api/addInterest', { interests, _id: this.getUserDetails()._id });
+    return this.http.post(BACKEND_URI + 'api/addInterest', { interests, _id: this.getUserDetails()._id });
   }
 
   public logout(): void {
@@ -127,7 +128,7 @@ export class AuthenticationService {
 
   public isEmailRegisterd(email: string) {
     // return this.request('post', 'isEmailRegistered',{email});
-    return this.http.post('/api/isEmailRegistered', { email });
+    return this.http.post(BACKEND_URI + '/api/isEmailRegistered', { email });
   }
 
   private handleError(error: any) {

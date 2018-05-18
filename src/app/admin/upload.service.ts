@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Club } from '../models/club';
+import { BACKEND_URI } from '../config/backend-uri';
 
 @Injectable()
 export class UploadService {
@@ -10,23 +11,23 @@ export class UploadService {
   uploadClubImage(formData: FormData) {
     let headers = new HttpHeaders();
     headers.delete('Content-Type');
-    
-    return this.http.post('/api/uploadClubImage', formData, {headers: headers})
+
+    return this.http.post(BACKEND_URI + '/api/uploadClubImage', formData, { headers: headers })
   }
 
-  uploadUserImage(formData: FormData){
+  uploadUserImage(formData: FormData) {
     let headers = new HttpHeaders();
     headers.delete('Content-Type');
 
-    return this.http.post('/api/uploadUserImage', formData, {headers: headers})
+    return this.http.post(BACKEND_URI + '/api/uploadUserImage', formData, { headers: headers })
   }
 
-  addClub(club: Club){
-    return this.http.post('/api/addClub', club);
+  addClub(club: Club) {
+    return this.http.post(BACKEND_URI + '/api/addClub', club);
   }
 
   saveUser(user) {
-    return this.http.post('/api/saveUser', user);
+    return this.http.post(BACKEND_URI + '/api/saveUser', user);
   }
 
 }

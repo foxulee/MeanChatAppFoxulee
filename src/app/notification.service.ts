@@ -2,6 +2,7 @@ import * as socketIO from 'socket.io-client';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SocketService } from './socket.service';
+import { BACKEND_URI } from './config/backend-uri';
 
 @Injectable()
 export class NotificationService {
@@ -12,7 +13,7 @@ export class NotificationService {
   }
 
   getLoginUserInfo(userId: string) {
-    return this.http.get('api/group/getUser/' + userId);
+    return this.http.get(BACKEND_URI + 'api/group/getUser/' + userId);
   }
 
 }

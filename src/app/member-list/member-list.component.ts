@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { BACKEND_URI } from '../config/backend-uri';
 
 @Component({
   selector: 'app-member-list',
@@ -14,7 +15,7 @@ export class MemberListComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get('api/members').subscribe(userList => this.filteredUserList = this.userList = userList as Array<any>);
+    this.http.get(BACKEND_URI + 'api/members').subscribe(userList => this.filteredUserList = this.userList = userList as Array<any>);
   }
 
   onSearchClick(name: string) {

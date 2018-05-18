@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { User } from './models/chat';
 import { SocketService } from './socket.service';
 import { AuthenticationService } from './authentication.service';
+import { BACKEND_URI } from './config/backend-uri';
 
 
 @Injectable()
@@ -18,11 +19,11 @@ export class FriendRequestService {
   ) { }
 
   getFriendList(userId) {
-    return this.http.get('api/group/getFriendList/' + userId);
+    return this.http.get(BACKEND_URI + 'api/group/getFriendList/' + userId);
   }
 
   sendFriendRequest(sender: User, receiver: string, group: string) {
-    return this.http.post('api/group/friendRequest/' + group, { sender, receiver });
+    return this.http.post(BACKEND_URI + 'api/group/friendRequest/' + group, { sender, receiver });
   }
 
   accetpFriendRequest(senderId: string, senderName: string, ) {
@@ -30,7 +31,7 @@ export class FriendRequestService {
     let userId = currentUser._id;
     let userName = currentUser.name;
 
-    return this.http.post('api/group/request/accept', { senderId, senderName, userId, userName });
+    return this.http.post(BACKEND_URI + 'api/group/request/accept', { senderId, senderName, userId, userName });
   }
 
   cancelFriendRequest(senderId: string, senderName: string, ) {
@@ -38,6 +39,6 @@ export class FriendRequestService {
     let userId = currentUser._id;
     let userName = currentUser.name;
 
-    return this.http.post('api/group/request/cancel', { senderId, senderName, userId, userName });
+    return this.http.post(BACKEND_URI + 'api/group/request/cancel', { senderId, senderName, userId, userName });
   }
 }

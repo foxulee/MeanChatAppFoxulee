@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
 import { HttpClient } from '@angular/common/http';
+import { BACKEND_URI } from '../config/backend-uri';
 
 @Component({
   selector: 'app-user-overview',
@@ -20,7 +21,7 @@ export class UserOverviewComponent implements OnInit {
   }
 
   getUserInfo(){
-    return this.http.get('api/member-overview/' + this.userId);
+    return this.http.get(BACKEND_URI + 'api/member-overview/' + this.userId);
   }
 
 }
