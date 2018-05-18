@@ -21,7 +21,7 @@ export class UserOverviewComponent implements OnInit {
   }
 
   getUserInfo(){
-    return this.http.get(BACKEND_URI + 'api/member-overview/' + this.userId);
+    return this.http.get(BACKEND_URI + '/api/member-overview/' + this.userId);
   }
 
 }

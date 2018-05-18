@@ -116,7 +116,7 @@ export class AuthenticationService {
   }
 
   addInterest(interests: any) {
-    return this.http.post(BACKEND_URI + 'api/addInterest', { interests, _id: this.getUserDetails()._id });
+    return this.http.post(BACKEND_URI + '/api/addInterest', { interests, _id: this.getUserDetails()._id });
   }
 
   public logout(): void {

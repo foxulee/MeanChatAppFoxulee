@@ -3,7 +3,7 @@ import * as socketIO from 'socket.io-client';
 import { Observable } from 'rxjs/Observable';
 import { Message, SocketEvent } from './models/chat';
 
-const SERVER_URL = 'wss://localhost:3000';
+const SERVER_URL = 'wss://mean-stack-chat-app.herokuapp.com';
 
 
 @Injectable()

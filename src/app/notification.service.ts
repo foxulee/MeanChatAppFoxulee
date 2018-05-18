@@ -13,7 +13,7 @@ export class NotificationService {
   }
 
   getLoginUserInfo(userId: string) {
-    return this.http.get(BACKEND_URI + 'api/group/getUser/' + userId);
+    return this.http.get(BACKEND_URI + '/api/group/getUser/' + userId);
   }
 
 }

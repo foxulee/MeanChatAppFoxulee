@@ -24,11 +24,11 @@ export class GroupChatService {
   // }j
 
   send(message: Message): void {
-    this.http.post(BACKEND_URI + 'api/group/saveGroupMessage', message).subscribe();
+    this.http.post(BACKEND_URI + '/api/group/saveGroupMessage', message).subscribe();
   }
 
   getAllGroupMessages(group: string) {
-    return this.http.get(BACKEND_URI + 'api/group/getAllGroupMessages/' + group)
+    return this.http.get(BACKEND_URI + '/api/group/getAllGroupMessages/' + group)
       .map(messages => (messages as Array<any>).map(message => { 
         // console.log('message',message);
         return { from: { id: message.senderId._id, name: message.senderName, image: message.senderId.userImage }, content: message.message } }));;

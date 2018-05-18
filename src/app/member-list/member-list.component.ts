@@ -15,7 +15,7 @@ export class MemberListComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get(BACKEND_URI + 'api/members').subscribe(userList => this.filteredUserList = this.userList = userList as Array<any>);
+    this.http.get(BACKEND_URI + '/api/members').subscribe(userList => this.filteredUserList = this.userList = userList as Array<any>);
   }
 
   onSearchClick(name: string) {
