@@ -69,16 +69,16 @@
                         </ng-template>
                         <!-- <img [src]="'https://placehold.it/30*30'" class="pull-left img-circle" style="width: 50px; margin-right: 10px;"> -->
                         <p>
-                          <a class="val" [href]="'/#/private-chat/'+ onlineFriend['id'] + '.'+ auth.getUserDetails()._id + '?receiverName=' + onlineFriend['name']">
-                            <h3 style="padding-top: 15px; font-size: 14px">@{{onlineFriend['name']}}
-                              <i class="fa fa-circle pull-right" aria-hidden="true" [ngClass]="{'online': isOnline, 'offline':!isOnline}"></i>
-                            </h3>
-                          </a>
-                          <!-- <a class="val" [routerLink]="['/private-chat', onlineFriend['id']+'.'+auth.getUserDetails()._id]" [queryParams]="{receiverName: onlineFriend['name']}">
+                          <!-- <a class="val" [href]="'/#/private-chat/'+ onlineFriend['id'] + '.'+ auth.getUserDetails()._id + '?receiverName=' + onlineFriend['name']">
                             <h3 style="padding-top: 15px; font-size: 14px">@{{onlineFriend['name']}}
                               <i class="fa fa-circle pull-right" aria-hidden="true" [ngClass]="{'online': isOnline, 'offline':!isOnline}"></i>
                             </h3>
                           </a> -->
+                          <a class="val" [routerLink]="['/private-chat', onlineFriend['id']+'.'+auth.getUserDetails()._id]" [queryParams]="{receiverName: onlineFriend['name']}">
+                            <h3 style="padding-top: 15px; font-size: 14px">@{{onlineFriend['name']}}
+                              <i class="fa fa-circle pull-right" aria-hidden="true" [ngClass]="{'online': isOnline, 'offline':!isOnline}"></i>
+                            </h3>
+                          </a>
                         </p>
                       </div>
                     </div>
