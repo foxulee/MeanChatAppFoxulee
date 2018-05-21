@@ -42,7 +42,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'news', component: NewsComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService, AdminGuardService] },
   { path: 'members', component: MemberListComponent, canActivate: [AuthGuardService] },
   { path: 'overview/:id', component: UserOverviewComponent, canActivate: [AuthGuardService] },
   { path: 'group-chat/:name', component: GroupChatComponent, runGuardsAndResolvers: 'always', canActivate: [AuthGuardService] },
