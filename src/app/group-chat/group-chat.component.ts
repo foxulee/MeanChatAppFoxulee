@@ -185,7 +185,7 @@ export class GroupChatComponent implements OnInit, OnDestroy {
   }
 
   navigateToMyProfile() {
-    window.open('/setting/profile')
+    window.open('/#/setting/profile')
   }
 
   ngAfterViewInit(): void {
