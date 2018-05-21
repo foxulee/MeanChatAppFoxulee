@@ -33,6 +33,8 @@ import { AdminGuardService } from './admin-guard.service';
 import { NewsComponent } from './news/news.component';
 import { NewsService } from './news.service';
 import { ReloadNavbarService } from './reload-navbar.service';
+import { CustExtBrowserXhr } from './cust-ext-browser-xhr';
+import { BrowserXhr } from '@angular/http';
 
 
 const routes: Routes = [
@@ -89,7 +91,8 @@ const routes: Routes = [
     FriendRequestService,
     PrivateChatService,
     NewsService,
-    ReloadNavbarService
+    ReloadNavbarService,
+    {provide: BrowserXhr, useFactory: CustExtBrowserXhr}
   ],
   bootstrap: [AppComponent]
 })
