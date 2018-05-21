@@ -92,7 +92,7 @@ const routes: Routes = [
     PrivateChatService,
     NewsService,
     ReloadNavbarService,
-    {provide: BrowserXhr, useFactory: CustExtBrowserXhr}
+    {provide: BrowserXhr, useClass: CustExtBrowserXhr}
   ],
   bootstrap: [AppComponent]
 })
